@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #000000; /* Deep black */
+  --color-secondary: #0c0c1d; /* Dark navy */
+  --color-accent: #0066ff; /* Professional blue */
+  --color-dark: #0a0a1a; /* Dark blue-black */
+  --color-light: #ffffff; /* Clean white */
+  --color-navy: #001f3f; /* Deep navy */
+  --color-royal: #4169e1; /* Royal blue */
+  --color-steel: #4682b4; /* Steel blue */
+  --color-ice: #f0f8ff; /* Ice blue */
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+  
+  --shadow-neon: 0 0 5px var(--color-accent), 0 0 20px var(--color-accent);
+  --shadow-glass: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+  :root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    
+    color-scheme: dark;
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  }
+}
+
+@layer components {
+  .glass-effect {
+    background: rgba(10, 10, 26, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .neon-border {
+    border: 1px solid rgba(0, 102, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.2);
+  }
+  
+  .section-padding {
+    @apply py-20 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background: linear-gradient(90deg, var(--color-light) 0%, var(--color-accent) 100%);
+  }
+}
