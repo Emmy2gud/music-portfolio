@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { FaPlay, FaPause, FaVolumeUp, FaStepForward, FaStepBackward } from 'react-icons/fa';
+import { FaPlay, FaPause, FaVolumeUp, FaStepForward, FaStepBackward, FaDownload } from 'react-icons/fa';
 
-const BeatPlayerSection = ({ onViewAll }) => {
+const AllBeatsPage = ({ onBack }) => {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -17,7 +17,8 @@ const BeatPlayerSection = ({ onViewAll }) => {
       key: "Am",
       duration: "3:45",
       genre: "Hip-Hop",
-      file: "/beats/LC.mp3"
+      file: "/beats/LC.mp3",
+      price: "$49.99"
     },
     {
       id: 2,
@@ -26,7 +27,8 @@ const BeatPlayerSection = ({ onViewAll }) => {
       key: "C#m",
       duration: "4:20",
       genre: "Afrobeats",
-      file: "/beats/alte - Copy.mp3"
+      file: "/beats/alte - Copy.mp3",
+      price: "$39.99"
     },
     {
       id: 3,
@@ -35,7 +37,8 @@ const BeatPlayerSection = ({ onViewAll }) => {
       key: "Fm",
       duration: "3:15",
       genre: "Afrobeats",
-      file: "/beats/burna x housemusic.mp3"
+      file: "/beats/burna x housemusic.mp3",
+      price: "$44.99"
     },
     {
       id: 4,
@@ -44,7 +47,8 @@ const BeatPlayerSection = ({ onViewAll }) => {
       key: "Dm",
       duration: "2:55",
       genre: "Afrobeats",
-      file: "/beats/burnaboy x jorja x london - Copy.mp3"
+      file: "/beats/burnaboy x jorja x london - Copy.mp3",
+      price: "$49.99"
     },
     {
       id: 5,
@@ -53,7 +57,8 @@ const BeatPlayerSection = ({ onViewAll }) => {
       key: "Em",
       duration: "4:10",
       genre: "Drill",
-      file: "/beats/drill on point.mp3"
+      file: "/beats/drill on point.mp3",
+      price: "$34.99"
     },
     {
       id: 6,
@@ -62,7 +67,48 @@ const BeatPlayerSection = ({ onViewAll }) => {
       key: "Bm",
       duration: "3:30",
       genre: "Hip-Hop",
-      file: "/beats/playboi carti.mp3"
+      file: "/beats/playboi carti.mp3",
+      price: "$49.99"
+    },
+    {
+      id: 7,
+      title: "RNB Got Me",
+      bpm: 95,
+      key: "Gm",
+      duration: "4:30",
+      genre: "R&B",
+      file: "/beats/rnb got me everytime2.mp3",
+      price: "$39.99"
+    },
+    {
+      id: 8,
+      title: "Sarz Chaiii",
+      bpm: 125,
+      key: "D#m",
+      duration: "3:45",
+      genre: "Afrobeats",
+      file: "/beats/sarz chaiii.mp3",
+      price: "$44.99"
+    },
+    {
+      id: 9,
+      title: "Spicyy X Crispin",
+      bpm: 135,
+      key: "Cm",
+      duration: "3:20",
+      genre: "Afrobeats",
+      file: "/beats/spicyy x crispin.mp3",
+      price: "$39.99"
+    },
+    {
+      id: 10,
+      title: "You Can't See Me",
+      bpm: 128,
+      key: "Am",
+      duration: "3:15",
+      genre: "Hip-Hop",
+      file: "/beats/you can't see me_2.mp3",
+      price: "$49.99"
     }
   ];
 
@@ -141,16 +187,24 @@ const BeatPlayerSection = ({ onViewAll }) => {
   }, [currentTrack]);
 
   return (
-    <section className="section-padding" id="beats">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 gradient-text">Featured Beats</h2>
+    <div className="min-h-screen bg-gradient-to-b from-primary to-secondary text-white py-12">
+      <div className="container mx-auto px-4">
+        {/* Back Button */}
+        <button 
+          onClick={onBack}
+          className="glass-effect neon-border px-4 py-2 rounded-full mb-8 hover:bg-accent/20 transition-all"
+        >
+          ← Back to Home
+        </button>
+
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 gradient-text">All Beats</h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Explore my latest productions. Each beat is meticulously crafted for artists seeking premium sound quality.
+            Explore my complete collection of premium beats. Each track is professionally produced and ready for licensing.
           </p>
         </div>
 
-        {/* Audio Player */}
+        {/* Main Player */}
         <div className="glass-effect rounded-2xl p-6 mb-12">
           <div className="flex flex-col md:flex-row items-center justify-between mb-6">
             <div className="flex items-center mb-4 md:mb-0">
@@ -159,7 +213,7 @@ const BeatPlayerSection = ({ onViewAll }) => {
               </div>
               <div>
                 <h3 className="text-xl font-bold">{tracks[currentTrack].title}</h3>
-                <p className="text-gray-400">{tracks[currentTrack].genre}</p>
+                <p className="text-gray-400">{tracks[currentTrack].genre} • {tracks[currentTrack].bpm} BPM • {tracks[currentTrack].key}</p>
               </div>
             </div>
             
@@ -208,17 +262,26 @@ const BeatPlayerSection = ({ onViewAll }) => {
             </div>
           </div>
           
-          {/* Volume Control */}
-          <div className="flex items-center">
-            <FaVolumeUp className="text-gray-400 mr-2" />
-            <input 
-              type="range" 
-              min="0" 
-              max="100" 
-              value={volume * 100}
-              onChange={handleVolumeChange}
-              className="w-24 accent-accent"
-            />
+          {/* Controls */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center">
+              <FaVolumeUp className="text-gray-400 mr-2" />
+              <input 
+                type="range" 
+                min="0" 
+                max="100" 
+                value={volume * 100}
+                onChange={handleVolumeChange}
+                className="w-24 accent-accent"
+              />
+            </div>
+            
+            <div className="flex items-center space-x-3">
+              <span className="text-accent font-bold">{tracks[currentTrack].price}</span>
+              <button className="glass-effect neon-border px-4 py-2 rounded-full text-sm hover:bg-accent/20 transition-all flex items-center">
+                <FaDownload className="mr-2" /> License Beat
+              </button>
+            </div>
           </div>
           
           {/* Hidden Audio Element */}
@@ -234,8 +297,8 @@ const BeatPlayerSection = ({ onViewAll }) => {
           />
         </div>
 
-        {/* Tracks Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Beats Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {tracks.map((track, index) => (
             <div 
               key={track.id} 
@@ -285,28 +348,19 @@ const BeatPlayerSection = ({ onViewAll }) => {
                   )}
                 </button>
                 
-                <div className="flex items-center space-x-2 text-gray-400">
-                  <FaVolumeUp />
-                  <div className="w-24 h-1 bg-gray-700 rounded-full">
-                    <div className="h-full bg-accent rounded-full w-3/4"></div>
-                  </div>
+                <div className="flex items-center space-x-3">
+                  <span className="text-accent font-bold">{track.price}</span>
+                  <button className="glass-effect neon-border px-3 py-2 rounded-full text-sm hover:bg-accent/20 transition-all">
+                    <FaDownload />
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        <div className="text-center mt-12">
-          <button 
-            onClick={onViewAll}
-            className="glass-effect neon-border px-8 py-3 rounded-full font-medium hover:bg-accent/20 transition-all"
-          >
-            View Full Catalog
-          </button>
-        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default BeatPlayerSection;
+export default AllBeatsPage;

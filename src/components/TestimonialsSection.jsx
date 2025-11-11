@@ -4,21 +4,21 @@ import { motion } from 'framer-motion';
 const testimonials = [
   {
     id: 1,
-    name: "Alex Rivera",
-    role: "Hip-Hop Artist",
+    name: "Vybetha king",
+    role: "Afro-rnb Artist",
     content: "Working with Crispin was a game-changer for my career. His beats perfectly complement my style and elevate my music to a whole new level.",
     avatar: "AR"
   },
   {
     id: 2,
-    name: "Sophie Chen",
-    role: "R&B Singer",
+    name: "Venoe",
+    role: "Alte-R&B Singer",
     content: "The attention to detail and creative approach Crispin brings to every project is unmatched. My album wouldn't have sounded the same without his expertise.",
     avatar: "SC"
   },
   {
     id: 3,
-    name: "Marcus Johnson",
+    name: "Ugochukwu Chidi aka $wiss",
     role: "Record Label A&R",
     content: "Crispin consistently delivers high-quality productions that stand out in today's competitive music landscape. A true professional in every sense.",
     avatar: "MJ"

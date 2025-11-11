@@ -162,8 +162,8 @@ const HeroSection = () => {
             {/* Profile image container */}
             <div className="glass-effect neon-border rounded-full p-1 relative overflow-hidden">
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 w-64 h-64 md:w-80 md:h-80 rounded-full flex items-center justify-center relative">
-                {/* Profile image placeholder - replace with your actual image */}
-                <div className="text-6xl font-heading text-gray-600">CB</div>
+               
+                <img src="images/producer.jpg" alt="Crispin Beatz" className="w-64 h-64 md:w-80 md:h-80 rounded-full" />
                 
                 {/* Animated border effect */}
                 <div className="absolute inset-0 rounded-full border-4 border-accent/30 animate-ping opacity-20"></div>
