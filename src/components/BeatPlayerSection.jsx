@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { FaPlay, FaPause, FaVolumeUp } from 'react-icons/fa';
 
 const BeatPlayerSection = () => {
-  const [currentTrack, setCurrentTrack] = useState(0);
+  const [currentTrack, setCurrentTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  // Store audio refs for all tracks
+  const audioRefs = useRef([]);
 
   // Sample track data
   const tracks = [
@@ -57,33 +60,58 @@ const BeatPlayerSection = () => {
     }
   ];
 
-  const togglePlay = (index) => {
-    if (currentTrack === index && isPlaying) {
-      setIsPlaying(false);
-    } else {
-      setCurrentTrack(index);
-      setIsPlaying(true);
+ const togglePlay = (index) => {
+    const audio = audioRefs.current[index];
+
+    // If clicking the same track → toggle pause
+    if (currentTrack === index) {
+      if (isPlaying) {
+        audio.pause();
+        setIsPlaying(false);
+      } else {
+        audio.play();
+        setIsPlaying(true);
+      }
+      return;
     }
+
+    // Pause all other tracks first
+    audioRefs.current.forEach((a, i) => {
+      if (a && i !== index) a.pause();
+    });
+
+    // Switch to new track
+    setCurrentTrack(index);
+    setIsPlaying(true);
+    audio.play();
   };
 
+
   return (
-    <section className="section-padding">
+ <section className="section-padding">
       <div className="container mx-auto">
+
+        {/* UI unchanged */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 gradient-text">Featured Beats</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Explore my latest productions. Each beat is meticulously crafted for artists seeking premium sound quality.
+            Explore my latest productions. Each beat is meticulously crafted.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tracks.map((track, index) => (
-            <div 
-              key={track.id} 
-              className={`glass-effect rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] ${
+            <div key={track.id} className={`glass-effect rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] ${
                 currentTrack === index && isPlaying ? 'neon-border ring-2 ring-accent/30' : ''
               }`}
             >
+              {/* AUDIO ELEMENT */}
+              <audio
+                ref={(el) => (audioRefs.current[index] = el)}
+                src={track.audio}
+              />
+
+              {/* Your UI is untouched below */}
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h3 className="text-xl font-bold mb-1">{track.title}</h3>
@@ -98,14 +126,12 @@ const BeatPlayerSection = () => {
                 <div className="text-gray-400">{track.duration}</div>
               </div>
 
-              {/* Waveform visualization */}
               <div className="mb-6">
                 <div className="h-20 flex items-end justify-between gap-1">
                   {[...Array(40)].map((_, i) => (
-                    <div 
-                      key={i} 
+                    <div key={i}
                       className="flex-1 bg-gradient-to-t from-accent/20 to-accent/60 rounded-t"
-                      style={{ 
+                      style={{
                         height: `${Math.random() * 60 + 10}%`,
                         opacity: currentTrack === index && isPlaying ? (i % 3 === 0 ? 1 : 0.7) : 0.5
                       }}
@@ -125,7 +151,7 @@ const BeatPlayerSection = () => {
                     <FaPlay className="text-accent ml-1" />
                   )}
                 </button>
-                
+
                 <div className="flex items-center space-x-2 text-gray-400">
                   <FaVolumeUp />
                   <div className="w-24 h-1 bg-gray-700 rounded-full">
