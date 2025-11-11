@@ -26,7 +26,7 @@ const BeatPlayerSection = ({ onViewAll }) => {
       key: "C#m",
       duration: "4:20",
       genre: "Afrobeats",
-      file: "/beats/alte - Copy.mp3"
+      file: "/beats/alte.mp3"
     },
     {
       id: 3,
@@ -44,7 +44,7 @@ const BeatPlayerSection = ({ onViewAll }) => {
       key: "Dm",
       duration: "2:55",
       genre: "Afrobeats",
-      file: "/beats/burnaboy x jorja x london - Copy.mp3"
+      file: "/beats/burnaboy x jorja x london.mp3"
     },
     {
       id: 5,
