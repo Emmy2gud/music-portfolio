@@ -48,9 +48,9 @@ const ContactSection = () => {
   };
 
   const socialLinks = [
-    { icon: <FaWhatsapp className="text-2xl" />, url: 'https://wa.me/1234567890', label: 'WhatsApp' },
+    { icon: <FaWhatsapp className="text-2xl" />, url: 'https://wa.me/09075281203', label: 'WhatsApp' },
     { icon: <FaEnvelope className="text-2xl" />, url: 'mailto:emmanwabugo148@gmail.com', label: 'Email' },
-    { icon: <FaInstagram className="text-2xl" />, url: 'https://instagram.com/crispinbeatz', label: 'Instagram' },
+    { icon: <FaInstagram className="text-2xl" />, url: 'https://www.instagram.com/crispinbeatz?igsh=MXU3cXZ2cW9ldG00Yg==', label: 'Instagram' },
 
   ];
 
