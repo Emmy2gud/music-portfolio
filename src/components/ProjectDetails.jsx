@@ -9,21 +9,8 @@ const ProjectDetails = ({ project, onBack }) => {
   const [volume, setVolume] = useState(0.7);
   const audioRef = useRef(null);
 
-  // Sample project data (in a real app, this would come from props or API)
-  const projectData = project || {
-    id: 1,
-    title: "Urban Legends",
-    artist: "Various Artists",
-    year: "2024",
-    genre: "Hip-Hop Compilation",
-    bpm: "120 BPM",
-    key: "Am",
-    status: "Uploaded",
-    description: "A groundbreaking compilation featuring some of the hottest emerging talent in hip-hop. Each track showcases a unique blend of classic boom-bap elements with modern trap influences, creating a cohesive yet diverse listening experience. This project represents months of collaboration with artists from across the globe, each bringing their unique style to create something truly special.",
-    tags: ["Hip-Hop", "Energetic", "120 BPM", "Am"],
-    image: "",
-    audioFile: "/beats/LC.mp3"
-  };
+  // Use the passed project data directly
+  const projectData = project;
 
   // Handle play/pause
   const togglePlay = () => {
@@ -66,10 +53,21 @@ const ProjectDetails = ({ project, onBack }) => {
 
   // Effect to handle audio setup
   useEffect(() => {
-    if (audioRef.current) {
+    if (audioRef.current && projectData) {
+      // Set the audio source to the project's file
+      audioRef.current.src = projectData.file;
       audioRef.current.volume = volume;
     }
-  }, [volume]);
+  }, [projectData, volume]);
+
+  // Reset playback when project changes
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+      setProgress(0);
+    }
+  }, [projectData]);
 
   return (
     <motion.div
@@ -91,9 +89,9 @@ const ProjectDetails = ({ project, onBack }) => {
           {/* Left Column - Artwork and Player */}
           <div>
             <div className="glass-effect rounded-2xl overflow-hidden mb-8">
-              <div className="aspect-square bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative">
+              <div className="aspect-square bg-linear-to-br from-gray-800 to-gray-900 flex items-center justify-center relative">
                 <div className="text-8xl font-heading text-gray-600">{projectData.title.charAt(0)}</div>
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-primary/80 to-transparent"></div>
               </div>
             </div>
 
@@ -191,12 +189,12 @@ const ProjectDetails = ({ project, onBack }) => {
               
               <h2 className="text-2xl font-bold mb-4">About This Beat</h2>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                {projectData.description}
+                {projectData.description || "No description available for this project."}
               </p>
               
               <h3 className="text-xl font-bold mb-3">Tags</h3>
               <div className="flex flex-wrap gap-2">
-                {projectData.tags.map((tag, index) => (
+                {projectData.tags && projectData.tags.map((tag, index) => (
                   <span 
                     key={index} 
                     className="glass-effect px-3 py-1 rounded-full text-sm"
@@ -212,9 +210,9 @@ const ProjectDetails = ({ project, onBack }) => {
               <button className="glass-effect neon-border py-4 rounded-xl font-medium hover:bg-accent/20 transition-all flex items-center justify-center">
                 <FaHeadphones className="mr-2" /> Listen Full Track
               </button>
-              <button className="glass-effect neon-border py-4 rounded-xl font-medium hover:bg-accent/20 transition-all flex items-center justify-center">
+              {/* <button className="glass-effect neon-border py-4 rounded-xl font-medium hover:bg-accent/20 transition-all flex items-center justify-center">
                 <FaDownload className="mr-2" /> Buy License - $49.99
-              </button>
+              </button> */}
             </div>
             
             <button className="glass-effect w-full py-4 rounded-xl font-medium hover:bg-accent/20 transition-all mt-6 flex items-center justify-center">

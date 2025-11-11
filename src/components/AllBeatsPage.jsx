@@ -8,109 +8,30 @@ const AllBeatsPage = ({ onBack }) => {
   const [volume, setVolume] = useState(0.7);
   const audioRef = useRef(null);
 
-  // Track data with actual audio files
-  const tracks = [
-    {
-      id: 1,
-      title: "LC",
-      bpm: 120,
-      key: "Am",
-      duration: "3:45",
-      genre: "Hip-Hop",
-      file: "/beats/LC.mp3",
-      price: "$49.99"
-    },
-    {
-      id: 2,
-      title: "Alte",
-      bpm: 105,
-      key: "C#m",
-      duration: "4:20",
-      genre: "Afrobeats",
-      file: "/beats/alte - Copy.mp3",
-      price: "$39.99"
-    },
-    {
-      id: 3,
-      title: "Burna X Housemusic",
-      bpm: 130,
-      key: "Fm",
-      duration: "3:15",
-      genre: "Afrobeats",
-      file: "/beats/burna x housemusic.mp3",
-      price: "$44.99"
-    },
-    {
-      id: 4,
-      title: "Burnaboy X Jorja",
-      bpm: 140,
-      key: "Dm",
-      duration: "2:55",
-      genre: "Afrobeats",
-      file: "/beats/burnaboy x jorja x london - Copy.mp3",
-      price: "$49.99"
-    },
-    {
-      id: 5,
-      title: "Drill On Point",
-      bpm: 110,
-      key: "Em",
-      duration: "4:10",
-      genre: "Drill",
-      file: "/beats/drill on point.mp3",
-      price: "$34.99"
-    },
-    {
-      id: 6,
-      title: "Playboi Carti",
-      bpm: 150,
-      key: "Bm",
-      duration: "3:30",
-      genre: "Hip-Hop",
-      file: "/beats/playboi carti.mp3",
-      price: "$49.99"
-    },
-    {
-      id: 7,
-      title: "RNB Got Me",
-      bpm: 95,
-      key: "Gm",
-      duration: "4:30",
-      genre: "R&B",
-      file: "/beats/rnb got me everytime2.mp3",
-      price: "$39.99"
-    },
-    {
-      id: 8,
-      title: "Sarz Chaiii",
-      bpm: 125,
-      key: "D#m",
-      duration: "3:45",
-      genre: "Afrobeats",
-      file: "/beats/sarz chaiii.mp3",
-      price: "$44.99"
-    },
-    {
-      id: 9,
-      title: "Spicyy X Crispin",
-      bpm: 135,
-      key: "Cm",
-      duration: "3:20",
-      genre: "Afrobeats",
-      file: "/beats/spicyy x crispin.mp3",
-      price: "$39.99"
-    },
-    {
-      id: 10,
-      title: "You Can't See Me",
-      bpm: 128,
-      key: "Am",
-      duration: "3:15",
-      genre: "Hip-Hop",
-      file: "/beats/you can't see me_2.mp3",
-      price: "$49.99"
-    }
-  ];
+
+const tracks = [
+  { id: 1, title: "LC", bpm: 120, key: "Am", duration: "2:18", genre: "Hip-Hop", file: "/beats/LC.mp3", price: "$49.99" },
+  { id: 2, title: "Alte vybes", bpm: 105, key: "C#m", duration: "2:42", genre: "Afrobeats", file: "/beats/alte.mp3", price: "$39.99" },
+  { id: 3, title: "Burna X Housemusic", bpm: 130, key: "Fm", duration: "3:05", genre: "Afrobeats", file: "/beats/burna x housemusic.mp3", price: "$44.99" },
+  { id: 4, title: "Burnaboy X Jorja", bpm: 140, key: "Dm", duration: "2:33", genre: "Afrobeats", file: "/beats/burnaboy x jorja x london.mp3", price: "$49.99" },
+  { id: 5, title: "Drill On Point", bpm: 110, key: "Em", duration: "2:08", genre: "Drill", file: "/beats/drill on point.mp3", price: "$34.99" },
+  { id: 6, title: "Playboi Carti", bpm: 150, key: "Bm", duration: "2:51", genre: "Hip-Hop", file: "/beats/playboi carti.mp3", price: "$49.99" },
+  { id: 7, title: "RNB Got Me", bpm: 95, key: "Gm", duration: "2:22", genre: "R&B", file: "/beats/rnb got me everytime2.mp3", price: "$39.99" },
+  { id: 8, title: "Sarz Chaiii", bpm: 110, key: "D#m", duration: "2:31", genre: "Afrobeats", file: "/beats/sarz chaiii.mp3", price: "$44.99" },
+  { id: 9, title: "Spicyy X Crispin", bpm: 95, key: "Cm", duration: "2:14", genre: "Afrobeats", file: "/beats/spicyy x crispin.mp3", price: "$39.99" },
+  { id: 10, title: "You Can't See Me", bpm: 120, key: "Am", duration: "2:47", genre: "Hip-Hop", file: "/beats/you can't see me.mp3", price: "$49.99" },
+  { id: 11, title: "Rema Brazillian funk typebeat", bpm: 113, key: "Am", duration: "2:36", genre: "Hip-Hop", file: "/beats/rema fuji-funk.mp3", price: "$49.99" },
+  { id: 12, title: "Rema typebeat", bpm: 108, key: "Am", duration: "2:09", genre: "Hip-Hop", file: "/beats/rema shit next.wav", price: "$49.99" },
+  { id: 13, title: "travis scott typebeat", bpm: 140, key: "Dm", duration: "3:20", genre: "Hip-Hop", file: "/beats/travis scott.wav", price: "$49.99" },
+  { id: 14, title: "SA sounds", bpm: 113, key: "Am", duration: "2:55", genre: "Hip-Hop", file: "/beats/amapiano already.wav", price: "$49.99" },
+  { id: 15, title: "Rema x Ayra starr typebeat", bpm: 98, key: "Am", duration: "2:17", genre: "Afro-R&B", file: "/beats/looks expensive.mp3", price: "$49.99" },
+  { id: 16, title: "Rema R&B typebeat", bpm: 98, key: "Am", duration: "2:48", genre: "Afro-R&B", file: "/beats/remx x jazz.mp3", price: "$49.99" },
+  { id: 17, title: "Take me to Space", bpm: 98, key: "bm", duration: "2:11", genre: "Synthwave", file: "/beats/old school party.mp3", price: "$49.99" },
+  { id: 18, title: "Arabic typebeat", bpm: 100, key: "Am", duration: "2:39", genre: "Afrobeats", file: "/beats/myron master.mp3", price: "$49.99" },
+  { id: 19, title: "City and Money", bpm: 100, key: "Em", duration: "2:26", genre: "Afrobeats", file: "/beats/city and money.mp3", price: "$49.99" },
+  { id: 20, title: "Sarzy vibes", bpm: 98, key: "fm", duration: "2:32", genre: "Afrobeats", file: "/beats/sarz on top.mp3", price: "$49.99" }
+];
+
 
   // Handle play/pause
   const togglePlay = (index) => {
@@ -277,7 +198,7 @@ const AllBeatsPage = ({ onBack }) => {
             </div>
             
             <div className="flex items-center space-x-3">
-              <span className="text-accent font-bold">{tracks[currentTrack].price}</span>
+              {/* <span className="text-accent font-bold">{tracks[currentTrack].price}</span> */}
               <button className="glass-effect neon-border px-4 py-2 rounded-full text-sm hover:bg-accent/20 transition-all flex items-center">
                 <FaDownload className="mr-2" /> License Beat
               </button>
@@ -326,7 +247,7 @@ const AllBeatsPage = ({ onBack }) => {
                   {[...Array(40)].map((_, i) => (
                     <div 
                       key={i} 
-                      className="flex-1 bg-gradient-to-t from-accent/20 to-accent/60 rounded-t"
+                      className="flex-1 bg-linear-to-t from-accent/20 to-accent/60 rounded-t"
                       style={{ 
                         height: `${Math.random() * 60 + 10}%`,
                         opacity: currentTrack === index && isPlaying ? (i % 3 === 0 ? 1 : 0.7) : 0.5
@@ -349,10 +270,10 @@ const AllBeatsPage = ({ onBack }) => {
                 </button>
                 
                 <div className="flex items-center space-x-3">
-                  <span className="text-accent font-bold">{track.price}</span>
-                  <button className="glass-effect neon-border px-3 py-2 rounded-full text-sm hover:bg-accent/20 transition-all">
+                  {/* <span className="text-accent font-bold">{track.price}</span> */}
+                  {/* <button className="glass-effect neon-border px-3 py-2 rounded-full text-sm hover:bg-accent/20 transition-all">
                     <FaDownload />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

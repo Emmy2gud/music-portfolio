@@ -5,83 +5,102 @@ import { motion } from 'framer-motion';
 const projects = [
   {
     id: 1,
-    title: "Urban Legends",
-    artist: "Various Artists",
+    title: "Mabel",
+    artist: "FTM",
     year: "2024",
-    genre: "Hip-Hop Compilation",
-    status: "uploaded",
-    tags: ["Hip-Hop", "Energetic", "120 BPM", "Am"],
-    image: ""
+    genre: "Afrobeat",
+    status: "unreleased",
+    tags: ["Afrobeat", "R&B", "98 BPM", "Am"],
+    image: "",
+    file: "/songs/fitty.mp3"
   },
   {
     id: 2,
-    title: "Neon Nights",
-    artist: "Luna Eclipse",
+    title: "Jordan vibe",
+    artist: "Vybes Tha king",
     year: "2023",
-    genre: "R&B Album",
-    status: "uploaded",
-    tags: ["R&B", "Smooth", "95 BPM", "C#m"],
-    image: ""
+    genre: "Afro-R&B ",
+    status: "unreleased",
+    tags: ["Afrobeat", "R&B", "95 BPM", "C#m"],
+    image: "",
+    file: "/songs/Jordan Vibe.mp3"
   },
   {
     id: 3,
-    title: "Digital Dreams",
-    artist: "Synth Collective",
+    title: "Salamaleku",
+    artist: "Vybes Tha king",
     year: "2023",
-    genre: "Electronic EP",
-    status: "uploaded",
-    tags: ["Electronic", "Ambient", "130 BPM", "Fm"],
-    image: ""
+    genre: "Afrobeat",
+    status: "unreleased",
+    tags: ["Afrobeat", "Alte", "130 BPM", "Fm"],
+    image: "",
+    file: "/songs/SalaMaleku.wav"
   },
   {
     id: 4,
-    title: "Street Symphony",
-    artist: "MC Phoenix",
+    title: "Electric",
+    artist: "Ched1",
     year: "2022",
-    genre: "Trap Album",
-    status: "uploaded",
-    tags: ["Trap", "Aggressive", "140 BPM", "Dm"],
-    image: ""
+    genre: "Afrobeat",
+    status: "unreleased",
+    tags: ["Afrobeat", "Aggressive", "100 BPM", "Dm"],
+    image: "",
+    file: "/songs/ched2.mp3"
   },
   {
     id: 5,
-    title: "Midnight Chronicles",
-    artist: "Shadow Records",
+    title: "Electric Dance",
+    artist: "Venoe ft Dreamy",
     year: "2022",
-    genre: "Drill Compilation",
+    genre: "Dancehall",
     status: "unreleased",
-    tags: ["Drill", "Dark", "110 BPM", "Em"],
-    image: ""
+    tags: ["Afrobeats", "Summer", "100 BPM", "Em"],
+    image: "",
+    file: "/songs/Electric.mp3"
   },
   {
     id: 6,
-    title: "Vintage Vibes",
-    artist: "Retro Soul Band",
+    title: "OwoOwo",
+    artist: "Venoe",
     year: "2021",
-    genre: "Boom Bap Album",
-    status: "uploaded",
-    tags: ["Boom Bap", "Nostalgic", "90 BPM", "Bm"],
-    image: ""
+    genre: "AfroHouse",
+    status: "unreleased",
+    tags: ["Aforbeat", "Edm", "90 BPM", "Bm"],
+    image: "",
+    file: "/songs/OwoOwo.m4a"
   },
   {
     id: 7,
-    title: "Future Fusion",
-    artist: "Neo Sound",
+    title: "Party  Tonight",
+    artist: "Jesse Wav",
     year: "2024",
     genre: "Afrobeats",
     status: "unreleased",
     tags: ["Afrobeats", "Vibrant", "125 BPM", "Gm"],
-    image: ""
+    image: "",
+    file: "/songs/Party Tonight.mp3"
   },
   {
     id: 8,
-    title: "Echoes of Time",
-    artist: "Timeless Records",
+    title: "WineRough",
+    artist: "Vybes Tha king",
     year: "2023",
-    genre: "Soul Album",
-    status: "all",
-    tags: ["Soul", "Emotional", "85 BPM", "Am"],
-    image: ""
+    genre: "AfroSoul",
+    status: "unreleased",
+    tags: ["Afrobeat", "Soul", "85 BPM", "Am"],
+    image: "",
+    file: "/songs/WineRough.mp3"
+  },
+  {
+    id: 8,
+    title: "WineRough",
+    artist: "Vybes Tha king",
+    year: "2023",
+    genre: "AfroSoul",
+    status: "uploaded",
+    tags: ["Afrobeat", "Energy", "100 BPM", "Am"],
+    image: "",
+    file: "/songs/WineRough.mp3"
   }
 ];
 
@@ -94,7 +113,7 @@ const PortfolioSection = ({ onProjectClick }) => {
     : projects.filter(project => project.status === activeTab);
 
   return (
-    <section className="section-padding bg-gradient-to-b from-secondary to-dark" id="portfolio">
+    <section className="section-padding bg-linear-to-b from-secondary to-dark" id="portfolio">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 gradient-text">Portfolio</h2>
@@ -135,9 +154,8 @@ const PortfolioSection = ({ onProjectClick }) => {
               onClick={() => onProjectClick && onProjectClick(project)}
             >
               <div className="glass-effect rounded-2xl overflow-hidden transition-all duration-300 h-full">
-                {/* Album cover placeholder */}
-                <div className="aspect-square bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                <div className="aspect-square bg-linear-to-br from-gray-800 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent z-10"></div>
                   <div className="text-5xl font-heading text-gray-600 z-10">{project.title.charAt(0)}</div>
                   <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
